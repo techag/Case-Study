@@ -3,9 +3,10 @@ import './Ratings.css';
 import RatingStars from './RatingsStars/RatingsStars';
 
 const ratings = props => {
-console.log(props)
+    let mainWrapper = "Ratings "+props.className;
+    console.log(props.pros)
     return (
-        <div className="Ratings">
+        <div className={mainWrapper}>
            <RatingStars {...props}/>
             <span className="overall">overall</span>
             <span className="all-ratings">View All {props.totalReviews} Reviews</span>

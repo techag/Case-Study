@@ -22,7 +22,9 @@ class ProductDisplay extends Component {
         totalReviews: productDetails.CatalogEntryView[0].CustomerReview[0].totalReviews,
         pros: productDetails.CatalogEntryView[0].CustomerReview[0].Pro,
         cons: productDetails.CatalogEntryView[0].CustomerReview[0].Con,
-        imageIndex: [0,1,2]
+        availableOnline: productDetails.CatalogEntryView[0].purchasingChannelCode,
+        imageIndex: [0,1,2],
+        quantity: 1
     };
 
     /**
@@ -69,8 +71,30 @@ class ProductDisplay extends Component {
         this.setState({primaryImage:primaryImg})
     };
 
+    /**
+     * Increase or decrease quantity as per action
+     * */
+    quantityHandler = (currentQuan, action) => {
+        if (action === 'increase') {
+            currentQuan++;
+        }
+
+        if (action === 'decrease' && currentQuan > 1) {
+            currentQuan--;
+        }
+
+        this.setState({quantity: currentQuan});
+    };
+
+    checkOnlineAvailable = () => {
+       let availableOnline = this.state.availableOnline;
+
+        return availableOnline === '1' || availableOnline === '0';
+
+    };
+
     render() {
-console.log(this.state.itemDetail)
+
         return (
             <div className="ProductDisplay row">
                 {/*Left hand side panel*/}
@@ -80,7 +104,7 @@ console.log(this.state.itemDetail)
                         <span>{this.state.itemDetail.title}</span>
                     </div>
                     <div className="product-img row">
-                        <img alt="" src={this.state.images.PrimaryImage[0].image}/>
+                        <img alt="" src={this.state.primaryImage}/>
                     </div>
 
                     <div className="view-larger row">
@@ -95,7 +119,13 @@ console.log(this.state.itemDetail)
                         imageSlideHandler={this.imageSlideHandler}
                         setPrimaryImage = {this.setPrimaryImageHandler}
                     />
-
+                    <Ratings
+                        ratings={this.state.avgRating}
+                        totalReviews={this.state.totalReviews}
+                        pros={this.state.pros}
+                        cons={this.state.cons}
+                        className="rating-desktop"
+                    />
                 </div>
 
                 {/*Right Hand Side build*/}
@@ -109,11 +139,11 @@ console.log(this.state.itemDetail)
                     <Promotions promotions={this.state.promotions}/>
 
                     {/*Manage Product Quantity*/}
-                    <ProductQuantity />
+                    <ProductQuantity quantityHandler={this.quantityHandler} currentQuantity={this.state.quantity}/>
 
                     {/*Action Buttons*/}
 
-                    <ActionButtons />
+                    <ActionButtons availableOnline={this.checkOnlineAvailable()}/>
 
                     <div className="returns">
                         <span className="return-lbl">returns</span>
@@ -134,6 +164,7 @@ console.log(this.state.itemDetail)
                         totalReviews={this.state.totalReviews}
                         pros={this.state.pros}
                         cons={this.state.cons}
+                        className="rating-mobile"
                     />
 
                 </div>

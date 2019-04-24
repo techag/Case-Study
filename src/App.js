@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
 import {Redirect, Route, Switch} from 'react-router-dom';
-import Welcome from './components/Welcome/Welcome';
 import ProductDisplay from './containers/ProductDisplay'
 
 class App extends Component {
@@ -10,7 +9,7 @@ class App extends Component {
         return (
             <div className="App container-fluid">
                 <Switch>
-                    <Route path={'/'} exact component={Welcome} />
+                    <Route path={'/'} exact component={ProductDisplay} />
                     <Route path={'/product'} exact component={ProductDisplay} />
                 </Switch>
             </div>

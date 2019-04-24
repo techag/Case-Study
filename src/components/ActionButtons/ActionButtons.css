@@ -12,7 +12,7 @@ button.pick-up-in-store, button.add-to-cart {
 }
 
 button.pick-up-in-store {
-    background-image: linear-gradient(to top, #000, #0e0e0ea1);
+    background-image: linear-gradient(to top, #000, #0e0e0ea1)!important;
 }
 
 button.add-to-cart {

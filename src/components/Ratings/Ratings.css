@@ -1,6 +1,5 @@
 .Ratings {
     position: absolute;
-    /*bottom: -65%;*/
 }
 
 .overall {
@@ -25,6 +24,7 @@
     margin-top: 20px;
     background-color: #f6f5f5;
     padding: 20px;
+    position: absolute;
 }
 .pro, .con{
     display: inline-block;
@@ -57,7 +57,6 @@ span.most-helpful {
     font-family:Helvetica;
     color: #666666;
     font-size:15px;
-    width: 75%;
     float: left;
 }
 .pro-rating, .con-rating{
