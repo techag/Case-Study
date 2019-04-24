@@ -1,0 +1,17 @@
+import React from 'react';
+import './ActionButtons.css';
+
+const actionButtons = props => {
+
+    return (
+        <div className="ActionButtons">
+            <span>
+                <button className="pick-up-in-store">PICK UP IN STORE</button>
+                <button className="add-to-cart">ADD TO CART</button>
+            </span>
+            <span className="find-in-store">find in store</span>
+        </div>
+    )
+};
+
+export default actionButtons;

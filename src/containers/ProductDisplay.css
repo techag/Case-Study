@@ -1,0 +1,173 @@
+.ProductDisplay {
+    height: 100%;
+    margin-top:40px;
+}
+.product-img img {
+    position: relative;
+    left: 20%;
+    top: 20px;
+}
+
+.product-name {
+    width: 70%;
+    font-size: 1.5em;
+    font-family: Helvetica;
+    text-align: center;
+    position: relative;
+    left: 15%;
+}
+
+.view-larger {
+    text-align: center;
+    position: relative;
+    top: 90px;
+    left: 40%;
+}
+.view-larger span {
+    color: #666666;
+}
+
+.prod-amt {
+    text-align: left;
+    padding-bottom: 35px;
+}
+
+.prod-amt span {
+    font-family: Helvetica;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.price-detail {
+    font-size: 12px !important;
+    color: rgba(102, 102, 102, 255);
+}
+
+.find-in-store {
+    display: block;
+    text-align: center;
+    width: 200px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.returns {
+    margin-top:25px;
+}
+span.return-lbl {
+    font-family: Helvetica;
+    font-size: 20px;
+    padding-right: 15px;
+    display: inline-block;
+    border-right: 1px solid #666666;
+    color: #666666;
+}
+
+span.return-dtl {
+    font-family: Helvetica;
+    font-size: 13px;
+    padding-left: 15px;
+    color: #666666;
+}
+.reg-list-share button {
+    font-family: Helvetica;
+    border: none;
+    background-color: #f3f3f3;
+    width: 144px;
+    height: 30px;
+    margin-right: 10px;
+    font-size: 13px;
+    border-radius:2px;
+}
+
+.enlarged-image {
+    position: relative;
+    left:30% !important;
+    top:20px !important;
+}
+
+
+@media only screen and (min-width:300px) and (max-width:768px) {
+    .product-name {
+        width: 100%;
+        font-size: 1em;
+        font-family: Helvetica;
+        text-align: center;
+        position: relative;
+        left: 5%;
+    }
+    .product-img img {
+        position: relative;
+        left: 15%;
+        top: 20px;
+        height: 200px;
+    }
+
+    .ImageSlider {
+        position: relative;
+        top: 15%;
+        left: 20% !important;
+        width: 100% !important;
+    }
+
+    .view-larger {
+        text-align: center;
+        position: relative;
+        top: 40px;
+        left: 30%;
+    }
+    .right-side {
+        position: relative;
+        top: 75px;
+    }
+    .prod-amt {
+        text-align: left;
+        padding-bottom: 10px;
+    }
+    .view-larger span {
+        color: #666666;
+        font-size: 14px;
+    }
+    .view-larger img {
+        height:20px;
+    }
+
+    .prod-amt span {
+        font-size: 25px;
+    }
+    .Promotions {
+        font-size:12px;
+    }
+    .Promotions img {
+        height:12px;
+    }
+
+    button.pick-up-in-store, button.add-to-cart {
+        width: 130px !important;
+        font-size: 12px;
+    }
+    .find-in-store {
+        width:135px;
+    }
+    span.return-lbl {
+        font-size: 16px;
+    }
+    .reg-list-share button {
+        width: 90px;
+        font-size: 8px;
+        margin-right: 5px;
+    }
+    .ProductHighlights span {
+        font-size:30px;
+    }
+    .ProductHighlights ul {
+        font-size: 15px;
+        margin-top:5px;
+    }
+    .pro-con-title, .review-title {
+        font-size:15px;
+    }
+    .most-helpful, .review{
+        font-size:12px !important;
+    }
+}

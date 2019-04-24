@@ -1,0 +1,67 @@
+.Ratings {
+    position: absolute;
+    /*bottom: -65%;*/
+}
+
+.overall {
+    font-family: Helvetica;
+    font-size: 12px;
+    font-weight:bold;
+    position: relative;
+    top: 5px;
+    left: 5px;
+}
+
+.all-ratings {
+    float: right;
+    position: relative;
+    right: 50px;
+    font-family: Helvetica;
+    font-size: 12px;
+    font-weight:bold;
+}
+
+.pros-cons {
+    margin-top: 20px;
+    background-color: #f6f5f5;
+    padding: 20px;
+}
+.pro, .con{
+    display: inline-block;
+    font-family:Helvetica;
+    color: #000;
+    width: 50%;
+}
+
+.pro-rating img, .con-rating img{
+    height:15px;
+}
+
+.con {
+    float: right;
+    position: relative;
+}
+span.most-helpful {
+    display: block;
+    color: #666666;
+    font-family:Helvetica;
+    font-size:15px;
+}
+.pro-cons-head {
+    border-bottom: 1px solid #66666B;
+    padding-bottom: 10px;
+}
+
+.review{
+    display: inline-block;
+    font-family:Helvetica;
+    color: #666666;
+    font-size:15px;
+    width: 75%;
+    float: left;
+}
+.pro-rating, .con-rating{
+    display: inline-block;
+    font-family:Helvetica;
+    width: 50%;
+}

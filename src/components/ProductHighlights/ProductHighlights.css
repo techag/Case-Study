@@ -1,0 +1,16 @@
+.ProductHighlights {
+    margin-top:25px;
+}
+
+.ProductHighlights span {
+    font-family: Helvetica;
+    font-size:35px;
+}
+
+.ProductHighlights ul {
+    font-family: Helvetica;
+    margin-top:25px;
+    position: relative;
+    left: -20px;
+    color: #666666;
+}

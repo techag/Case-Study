@@ -1,0 +1,13 @@
+.Promotions {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top: 1px solid #c3c0c0fc;
+    border-bottom: 1px solid #c3c0c0fc;
+    font-family: Helvetica;
+    font-size:15px;
+    color: rgba(204, 0, 0, 255);
+}
+
+.Promotions img {
+    padding-right: 5px;
+}

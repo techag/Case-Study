@@ -1,0 +1,20 @@
+.ActionButtons {
+    margin-top: 25px;
+}
+
+button.pick-up-in-store, button.add-to-cart {
+    margin-right: 10px;
+    width: 220px;
+    height: 36px;
+    color: #fff;
+    border: none;
+    border-radius: 2px;
+}
+
+button.pick-up-in-store {
+    background-image: linear-gradient(to top, #000, #0e0e0ea1);
+}
+
+button.add-to-cart {
+    background-image: linear-gradient(to top, #cc0000, #cc0000b5);
+}
