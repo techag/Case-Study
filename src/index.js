@@ -4,12 +4,20 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {BrowserRouter} from 'react-router-dom'
+import { createStore, combineReducers } from 'redux';
+import { Provider } from 'react-redux';
+import {itemDetails} from './reducers/ItemDetails';
+import {counter} from './reducers/quantity'
 
+const reducers = combineReducers({itemDetails:itemDetails, counter:counter});
+const store = createStore(reducers);
 
 let caseStudy = (
+<Provider store={store}>
     <BrowserRouter>
         <App />
     </BrowserRouter>
+</Provider>
 );
 
 ReactDOM.render(caseStudy, document.getElementById('root'));

@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import { withRouter} from 'react-router';
+
 import './ProductDisplay.css';
-import productDetails from '../assets/data/item-data.json';
 import ZoomIn from '../assets/images/zoom-in.png';
 import ImageSlider from '../components/ImageSlider/ImageSlider';
 import Promotions from '../components/Promotions/Promotions';
@@ -9,20 +11,10 @@ import ActionButtons from '../components/ActionButtons/ActionButtons';
 import ProductHighlights from '../components/ProductHighlights/ProductHighlights';
 import Ratings from '../components/Ratings/Ratings';
 
+
 class ProductDisplay extends Component {
 
     state = {
-        itemDetail: productDetails.CatalogEntryView[0],
-        images: productDetails.CatalogEntryView[0].Images[0],
-        primaryImage: productDetails.CatalogEntryView[0].Images[0].PrimaryImage[0].image,
-        offers: productDetails.CatalogEntryView[0].Offers[0].OfferPrice[0],
-        promotions: productDetails.CatalogEntryView[0].Promotions,
-        features: productDetails.CatalogEntryView[0].ItemDescription[0].features,
-        avgRating: productDetails.CatalogEntryView[0].CustomerReview[0].consolidatedOverallRating,
-        totalReviews: productDetails.CatalogEntryView[0].CustomerReview[0].totalReviews,
-        pros: productDetails.CatalogEntryView[0].CustomerReview[0].Pro,
-        cons: productDetails.CatalogEntryView[0].CustomerReview[0].Con,
-        availableOnline: productDetails.CatalogEntryView[0].purchasingChannelCode,
         imageIndex: [0,1,2],
         quantity: 1
     };
@@ -34,7 +26,7 @@ class ProductDisplay extends Component {
      * */
     imageSlideHandler = (imgIndex, direction) => {
         let newIndex = [];
-        let imageCount = Number(this.state.images.imageCount);
+        let imageCount = Number(this.props.images.imageCount);
 
         //Set the new index of image as per the direction
         //Should not be greater than imageCount
@@ -66,7 +58,7 @@ class ProductDisplay extends Component {
     setPrimaryImageHandler = (imgIndex) => {
         let primaryImg = '';
 
-        primaryImg = this.state.images.AlternateImages[imgIndex].image;
+        primaryImg = this.props.images.AlternateImages[imgIndex].image;
 
         this.setState({primaryImage:primaryImg})
     };
@@ -76,18 +68,18 @@ class ProductDisplay extends Component {
      * */
     quantityHandler = (currentQuan, action) => {
         if (action === 'increase') {
-            currentQuan++;
+            this.props.increment()
         }
 
         if (action === 'decrease' && currentQuan > 1) {
-            currentQuan--;
+           this.props.decrement()
         }
 
-        this.setState({quantity: currentQuan});
+        this.setState({quantity: this.props.quantity});
     };
 
     checkOnlineAvailable = () => {
-       let availableOnline = this.state.availableOnline;
+       let availableOnline = this.props.availableOnline;
 
         return availableOnline === '1' || availableOnline === '0';
 
@@ -101,10 +93,10 @@ class ProductDisplay extends Component {
 
                 <div className="col-md-7">
                     <div className="product-name row">
-                        <span>{this.state.itemDetail.title}</span>
+                        <span>{this.props.itemDetail.title}</span>
                     </div>
                     <div className="product-img row">
-                        <img alt="" src={this.state.primaryImage}/>
+                        <img alt="" src={this.props.primaryImage}/>
                     </div>
 
                     <div className="view-larger row">
@@ -114,16 +106,16 @@ class ProductDisplay extends Component {
                     </div>
 
                     <ImageSlider
-                        images={this.state.images.AlternateImages}
+                        images={this.props.images.AlternateImages}
                         imageIndex={this.state.imageIndex}
                         imageSlideHandler={this.imageSlideHandler}
                         setPrimaryImage = {this.setPrimaryImageHandler}
                     />
                     <Ratings
-                        ratings={this.state.avgRating}
-                        totalReviews={this.state.totalReviews}
-                        pros={this.state.pros}
-                        cons={this.state.cons}
+                        ratings={this.props.avgRating}
+                        totalReviews={this.props.totalReviews}
+                        pros={this.props.pros}
+                        cons={this.props.cons}
                         className="rating-desktop"
                     />
                 </div>
@@ -131,15 +123,15 @@ class ProductDisplay extends Component {
                 {/*Right Hand Side build*/}
                 <div className="col-md-5 right-side">
                     <div className="prod-amt">
-                        <span>{this.state.offers.formattedPriceValue}</span><span
+                        <span>{this.props.offers.formattedPriceValue}</span><span
                         className="price-detail"> online price</span>
                     </div>
 
                     {/*Promotions*/}
-                    <Promotions promotions={this.state.promotions}/>
+                    <Promotions promotions={this.props.promotions}/>
 
                     {/*Manage Product Quantity*/}
-                    <ProductQuantity quantityHandler={this.quantityHandler} currentQuantity={this.state.quantity}/>
+                    <ProductQuantity quantityHandler={this.quantityHandler} currentQuantity={this.props.quantity}/>
 
                     {/*Action Buttons*/}
 
@@ -157,13 +149,13 @@ class ProductDisplay extends Component {
                     </div>
 
                     {/*Product highlights*/}
-                    <ProductHighlights features={this.state.features}/>
+                    <ProductHighlights features={this.props.features}/>
 
                     <Ratings
-                        ratings={this.state.avgRating}
-                        totalReviews={this.state.totalReviews}
-                        pros={this.state.pros}
-                        cons={this.state.cons}
+                        ratings={this.props.avgRating}
+                        totalReviews={this.props.totalReviews}
+                        pros={this.props.pros}
+                        cons={this.props.cons}
                         className="rating-mobile"
                     />
 
@@ -174,4 +166,32 @@ class ProductDisplay extends Component {
     }
 }
 
-export default ProductDisplay;
+const mapStateToProps = state => {
+    return {
+        itemDetail: state.itemDetails,
+        images: state.itemDetails.Images[0],
+        primaryImage: state.itemDetails.Images[0].PrimaryImage[0].image,
+        offers: state.itemDetails.Offers[0].OfferPrice[0],
+        promotions: state.itemDetails.Promotions,
+        features: state.itemDetails.ItemDescription[0].features,
+        avgRating: state.itemDetails.CustomerReview[0].consolidatedOverallRating,
+        totalReviews: state.itemDetails.CustomerReview[0].totalReviews,
+        pros: state.itemDetails.CustomerReview[0].Pro,
+        cons: state.itemDetails.CustomerReview[0].Con,
+        availableOnline: state.itemDetails.purchasingChannelCode,
+        quantity: state.counter
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        increment: () => dispatch({type: 'INCREMENT'}),
+        decrement: () => dispatch({type: 'DECREMENT'})
+    }
+};
+
+export default withRouter(
+    connect(
+        mapStateToProps, mapDispatchToProps
+    )(ProductDisplay)
+);
