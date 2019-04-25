@@ -10,13 +10,13 @@ import ProductQuantity from '../components/ProductQuantity/ProductQuantity';
 import ActionButtons from '../components/ActionButtons/ActionButtons';
 import ProductHighlights from '../components/ProductHighlights/ProductHighlights';
 import Ratings from '../components/Ratings/Ratings';
-
+import EnlargeImage from '../components/EnlargeImage/EnlargeImage';
 
 class ProductDisplay extends Component {
 
     state = {
         imageIndex: [0,1,2],
-        quantity: 1
+        showModal: false
     };
 
     /**
@@ -58,9 +58,9 @@ class ProductDisplay extends Component {
     setPrimaryImageHandler = (imgIndex) => {
         let primaryImg = '';
 
-        primaryImg = this.props.images.AlternateImages[imgIndex].image;
+        this.props.changePrimaryImage(this.props.images.AlternateImages[imgIndex].image);
 
-        this.setState({primaryImage:primaryImg})
+        //this.setState({primaryImage:primaryImg})
     };
 
     /**
@@ -78,29 +78,42 @@ class ProductDisplay extends Component {
         this.setState({quantity: this.props.quantity});
     };
 
+    /**
+     * Check if the product is available online
+     * */
     checkOnlineAvailable = () => {
        let availableOnline = this.props.availableOnline;
-
         return availableOnline === '1' || availableOnline === '0';
+    };
+
+    enlargeImageHandler = () => {
 
     };
 
     render() {
-
+        // console.log(this.props)
         return (
             <div className="ProductDisplay row">
-                {/*Left hand side panel*/}
 
+                {/*Open Enlarged image in the modal*/}
+                {this.state.showModal && (
+                    <EnlargeImage
+                        primaryImage={this.props.primaryImage}
+                        childComponent={this.state.modalComponent}
+                    />
+                )}
+
+                {/*Left hand side panel*/}
                 <div className="col-md-7">
                     <div className="product-name row">
-                        <span>{this.props.itemDetail.title}</span>
+                        <span>{this.props.title}</span>
                     </div>
                     <div className="product-img row">
                         <img alt="" src={this.props.primaryImage}/>
                     </div>
 
                     <div className="view-larger row">
-                        <span>
+                        <span onClick={this.enlargeImageHanler}>
                             <img alt="" src={ZoomIn}/> view larger
                         </span>
                     </div>
@@ -168,17 +181,7 @@ class ProductDisplay extends Component {
 
 const mapStateToProps = state => {
     return {
-        itemDetail: state.itemDetails,
-        images: state.itemDetails.Images[0],
-        primaryImage: state.itemDetails.Images[0].PrimaryImage[0].image,
-        offers: state.itemDetails.Offers[0].OfferPrice[0],
-        promotions: state.itemDetails.Promotions,
-        features: state.itemDetails.ItemDescription[0].features,
-        avgRating: state.itemDetails.CustomerReview[0].consolidatedOverallRating,
-        totalReviews: state.itemDetails.CustomerReview[0].totalReviews,
-        pros: state.itemDetails.CustomerReview[0].Pro,
-        cons: state.itemDetails.CustomerReview[0].Con,
-        availableOnline: state.itemDetails.purchasingChannelCode,
+        ...state.itemDetails,
         quantity: state.counter
     };
 };
@@ -186,7 +189,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         increment: () => dispatch({type: 'INCREMENT'}),
-        decrement: () => dispatch({type: 'DECREMENT'})
+        decrement: () => dispatch({type: 'DECREMENT'}),
+        changePrimaryImage: primaryImage => dispatch({type: 'CHANGE_PRIMARY_IMAGE', primaryImage})
     }
 };
 

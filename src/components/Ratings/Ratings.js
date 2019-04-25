@@ -4,7 +4,6 @@ import RatingStars from './RatingsStars/RatingsStars';
 
 const ratings = props => {
     let mainWrapper = "Ratings "+props.className;
-    console.log(props.pros)
     return (
         <div className={mainWrapper}>
            <RatingStars {...props}/>

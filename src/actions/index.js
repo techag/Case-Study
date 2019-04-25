@@ -1,0 +1,1 @@
+export {getPrimaryImage} from './PrimaryImage';

@@ -2,7 +2,6 @@ import React from 'react';
 import './ActionButtons.css';
 
 const actionButtons = props => {
-    console.log(props.availableOnline)
     return (
         <div className="ActionButtons">
             {props.availableOnline &&

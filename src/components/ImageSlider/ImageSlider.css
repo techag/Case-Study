@@ -7,14 +7,14 @@
 
 .slide-left {
     position: relative;
-    top: 10px;
+    top: 15px;
     right: 25px;
     cursor: pointer;
 }
 
-.slide-right img {
+.slide-right {
     position: relative;
-    top: 10px;
+    top: 15px;
     left: 25px;
     cursor: pointer;
 }
