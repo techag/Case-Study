@@ -22,6 +22,7 @@
     position: relative;
     top: 90px;
     left: 40%;
+    cursor: pointer;
 }
 .view-larger span {
     color: #666666;
@@ -124,6 +125,7 @@ span.return-dtl {
         position: relative;
         top: 40px;
         left: 30%;
+        cursor: pointer;
     }
     .right-side {
         position: relative;
@@ -136,6 +138,7 @@ span.return-dtl {
     .view-larger span {
         color: #666666;
         font-size: 14px;
+        cursor: pointer;
     }
     .view-larger img {
         height:20px;

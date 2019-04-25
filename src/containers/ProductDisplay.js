@@ -56,11 +56,7 @@ class ProductDisplay extends Component {
      * Setting Up primary image on click of image
      * */
     setPrimaryImageHandler = (imgIndex) => {
-        let primaryImg = '';
-
         this.props.changePrimaryImage(this.props.images.AlternateImages[imgIndex].image);
-
-        //this.setState({primaryImage:primaryImg})
     };
 
     /**
@@ -86,8 +82,8 @@ class ProductDisplay extends Component {
         return availableOnline === '1' || availableOnline === '0';
     };
 
-    enlargeImageHandler = () => {
-
+    enlargeImageHandler = isVisible => {
+        this.setState({showModal: isVisible})
     };
 
     render() {
@@ -100,6 +96,7 @@ class ProductDisplay extends Component {
                     <EnlargeImage
                         primaryImage={this.props.primaryImage}
                         childComponent={this.state.modalComponent}
+                        handler={this.enlargeImageHandler}
                     />
                 )}
 
@@ -113,7 +110,7 @@ class ProductDisplay extends Component {
                     </div>
 
                     <div className="view-larger row">
-                        <span onClick={this.enlargeImageHanler}>
+                        <span onClick={e => this.enlargeImageHandler(true)}>
                             <img alt="" src={ZoomIn}/> view larger
                         </span>
                     </div>

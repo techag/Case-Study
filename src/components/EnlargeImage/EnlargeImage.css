@@ -1,0 +1,56 @@
+.EnlargeImage {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+    opacity: 1;
+    animation: show .5s ease;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.box-container {
+    width: 100%;
+}
+
+.enlarged-image-box {
+    left: calc(50% - (65%/2));
+    top: calc(50% - (85%/2));
+    position: relative;
+    width: 65%;
+    max-height: 85%;
+    border: 1px #fff;
+    background: #ffff;
+    bottom: 0;
+    display: flex;
+    margin: 0;
+    border-radius: 12px;
+    -webkit-animation: modalAnimate 0.40s;
+    animation: modalAnimate 0.35s;
+    overflow: hidden;
+}
+
+@keyframes modalAnimate {
+    from {
+        top: 0;
+    }
+    to {
+        top: 7.5%;
+    }
+}
+.CloseIcon {
+    float: right;
+    margin: 12px;
+    cursor: pointer;
+}
+
+.small-image {
+    height: 500px !important;
+}
+.image-container {
+    margin-top: 45px;
+}
